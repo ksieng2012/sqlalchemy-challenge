@@ -77,6 +77,7 @@ def precipitation():
     
     prcp_data_dict = dict(prcp_data)
 
+    session.close()
     return jsonify(prcp_data_dict)
 
 
@@ -96,6 +97,7 @@ def stations():
     # List all stations
     station_all_list = list(station_all)
 
+    session.close()
     return jsonify(station_all_list)
 
 
@@ -114,6 +116,7 @@ def tobs():
                     .all()
                     )
                     
+                    
     top_sta_id = most_act_station[0][0]
 
     tobs_data_data = (
@@ -125,7 +128,8 @@ def tobs():
     )
     
     tobs_data_list = list(tobs_data_data)
-    
+
+    session.close()
     return jsonify(tobs_data_list)
 
 # Define what to do when a user hits the /api/v1.0/<start>
@@ -144,7 +148,8 @@ def start(start=None):
                     )
                     
     start_date_list = list(start_date)
-    
+
+    session.close()
     return jsonify(start_date_list)
 
 @app.route("/api/v1.0/<start>/<end>")
@@ -162,7 +167,7 @@ def start_end(start=None, end=None):
                     )
                     
     start_end_date_list = list(start_end_date)
-    
+    session.close()
     return jsonify(start_end_date_list)
 
 
